@@ -109,6 +109,7 @@ function suggestSongParts(model, position) {
   return availableParts;
 }
 
+// eslint-disable-next-line no-unused-vars
 function suggestChordNames(lines, position) {
   const chordLines = lines.filter(l => isChordLine(l));
   const chords = Array.from(

@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor";
 import { isEmptyOrChordLine, isChordLine, isLyricLine } from "@/models/LineKind";
 import syllableRegex from "../models/syllableRegex";
 
-export default function moveChord({ text, position, direction, preserveOther, tabSize, alignToSyllable } = {}) {
+export default function moveChord({ text, position, direction, tabSize, alignToSyllable } = {}) {
   if (alignToSyllable == null) alignToSyllable = true;
   const { lineNumber, column } = position; // 1-based, not zero
   const lineIndex = lineNumber - 1, columnIndex = column - 1;

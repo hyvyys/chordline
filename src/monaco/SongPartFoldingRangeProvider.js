@@ -5,6 +5,7 @@ export default class SongPartFoldingRangeProvider {
     this.monaco = monaco;
   }
 
+  // eslint-disable-next-line no-unused-vars
   provideFoldingRanges (model, context, token) {
     const lines = model.getLinesContent();
     const songPartIndices = lines
