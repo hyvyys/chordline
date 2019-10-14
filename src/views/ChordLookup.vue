@@ -169,7 +169,7 @@ export default {
       }
     },
     getLink(symbol) {
-      return window.location.host + this.getRouterLink(symbol);
+      return window.location.host + process.env.BASE_URL + this.getRouterLink(symbol);
     },
     getRouterLink(symbol) {
       const url = '/lookup/';
