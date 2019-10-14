@@ -1,0 +1,32 @@
+@import "keen-ui/src/styles/imports";
+@import 'keen-ui/src/styles/tippy/tippy';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+.ui-textbox {
+  min-width: 10em;
+}
+
+.ui-checkbox__label-text {
+  margin-left: 0.3rem !important;
+  height: 24px;
+}
+
+.ui-tooltip-theme {
+  // background-color: rgba($md-grey-900, 1);
+  background-color: $dark-lighter !important;
+  color: $dark-text;
+  border-radius: $ui-default-border-radius;
+  font-size: rem(13px);
+  line-height: 1.4;
+  padding: 0.3rem rem(8px);
+  text-align: center;
+}

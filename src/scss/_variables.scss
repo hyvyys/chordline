@@ -1,0 +1,64 @@
+$accent: #9a4a9c;
+$accent: #46acff;
+
+$dark-background: #261627;
+// $dark-lighter: #3d213f;
+// $dark-medium: #582a5a;
+$dark-lighter: #2a213f;
+$dark-medium: #404575;
+$dark-neutral: #3c3057;
+
+$dark-hover: #3162ac;
+$dark-active: $accent;
+$dark-lighter-active: #27285c;
+
+// $dark-hover: #b44775;
+// $dark-active: #b46647;
+
+$dark-text: #eee;
+$dark-text-subtle: #a2b6c9;
+
+// $home-background: #f5ded4;
+$home-background: #e4ecf7;
+$home-background: #f5eff7;
+
+// $light-background: #fcf0ff;
+$light-background: #f5eff7;
+$light-hover: #edddff;
+$text: #262938;
+$text-lighter: #555b75;
+$text-subtle: #91a1af;
+
+$light-link: #ad726a;
+$light-link: #3c78e7;
+$light-link-hover: #f85e37;
+$link-underline1: #f72e4f;
+$link-underline2: #f38123;
+$light-link-hover: #46acff;
+$link-underline1: #4790ff;
+$link-underline2: #23f3ae;
+
+$dark-link-hover: #ff841f;
+$dark-link-hover: #89caff;
+$dark-link-underline1: $link-underline1;
+$dark-link-underline2: $link-underline2;
+$dark-link-underline1: #2e7ef7;
+$dark-link-underline2: #23f3ae;
+
+$light-shadow: #2c2c3088;
+$light-border: #c0bdd4;
+
+// KeenUi
+$font-stack:  'Nunito Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+$brand-primary-color: $accent;
+$brand-accent-color: $accent;
+
+// Monaco
+$shade-color: #e8e8e8;
+$shade-color-darker: #ccc;
+
+$chord: #237893; // monaco line numbers too
+$song-part: #925c38;
+$song-part: #778285;
+$editorInactiveSelection: #c0bdd4;

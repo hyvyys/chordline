@@ -1,0 +1,44 @@
+/* suggest-widget size */
+
+.monaco-editor .suggest-widget * {
+  background: red !important;
+}
+
+.monaco-editor .suggest-widget.docs-side {
+  width: 1000px;
+  background: red !important;
+}
+
+.monaco-editor .suggest-widget.docs-side > .details {
+  width: 60%;
+  background: red !important;
+  max-height: 800px !important;
+}
+
+.monaco-editor .suggest-widget.docs-side > .tree {
+  width: 30%;
+  background: red !important;
+  float: left;
+}
+
+/* parameter-hints-widget */
+
+.editor-widget.parameter-hints-widget.visible {
+  max-height: 800px !important;
+  background: red !important;
+
+}
+
+.monaco-editor .parameter-hints-widget > .wrapper {
+  max-width: 1000px;
+  background: red !important;
+
+}
+
+/* editor-hover */
+
+.monaco-editor-hover .monaco-editor-hover-content {
+  max-width: 1000px;
+  background: red !important;
+
+}

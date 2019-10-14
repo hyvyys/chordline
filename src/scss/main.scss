@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,700,800&display=swap&subset=latin-ext');
+
+@font-face {
+  font-family: Aromatron;
+  src: url(~@/assets/Aromatron-Regular.ttf);
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  background: $light-background !important;
+}
+// body,
+// .monaco-editor, .monaco-editor-background, .monaco-editor .inputarea.ime-input, .monaco-editor .margin {
+//   background: $light-background !important;
+// }
+body, .ui-textbox {
+  font-family: $font-stack;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+.u-scroll {
+  overflow: hidden auto;
+}
+
+.u-fill-page {
+  min-height: 100vh;
+}
+
+.main {
+  display: flex;
+  // padding: 10px;
+  flex: 1;
+  overflow: hidden;
+}
+
+a {
+  color: $light-link;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.25s;
+  position: relative;
+  
+  &[class=''],
+  &:not([class]),
+  &.link-padded {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, $link-underline1, $link-underline2);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  }
+  &:hover {
+    color: $light-link-hover;
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+a.link-padded {
+  padding: 0.4em 0;
+  white-space: nowrap;
+  &::after {
+    bottom: 0.3em;
+  }
+}
+
+.u-overlay {
+  position: relative;
+  > :not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+.u-dark {
+  color: $dark-text;
+  a {
+    font-weight: 600;
+    color: $dark-text;
+    transition: color 0.5s;
+    &:hover {
+      color: $dark-link-hover;
+    }
+    &::after {
+      background: linear-gradient(to right, $dark-link-underline1, $dark-link-underline2);
+    }
+    &.router-link-exact-active {
+      color: $dark-link-hover;
+    }
+  }
+}
+
+.u-flex {
+  display: flex;
+  align-items: center;
+  > * {
+    margin: 0 0.4rem;
+  }
+}
+.u-flex-baseline {
+  display: flex;
+  align-items: baseline;
+  > * {
+    margin: 0 0.4rem;
+  }
+}
+
+.u-flex-1 {
+  flex: 1;
+}
+
+.snippet {
+  border-radius: 2px;
+  background: rgba(white, 0.5);
+  color: #ae71c0;
+  padding: 0 4px;
+  margin: 0 1px;
+}
+
+.right-sidebar {
+  width: 10em;
+  flex: 0 0 auto;
+  margin-right: 0;
+}
+
+.autoplay-checkbox {
+  width: 10em;
+}
+
+.u-content {
+  margin: 50px 0;
+  line-height: 1.666;
+  color: $text-lighter;
+  font-size: 19px;
+  p {
+    margin: 0.75em 0;
+    text-align: left;
+    width: 100%;
+  }
+
+  .key-combo {
+    ::v-deep .keycap {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px;
+      min-width: 2em;
+      &.space {
+        width: 8em;
+      }
+    }
+    transform: translateY(-2px);
+  }
+  .snippet {
+    font-size: 0.9em;
+  }
+}
+
+.reading {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: auto;
+}
+
+@import "./keen-ui.scss";

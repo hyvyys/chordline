@@ -1,0 +1,22 @@
+
+@import './variables';
+
+@mixin shiny-glass() {
+    $c: rgba($accent, 0.25);
+    $w: rgba(white, 1);
+    background-image: radial-gradient($c, $w);
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: no-repeat 30% 80% / 300% 300% rgba($light-background, 0.1);
+      $t: rgba(white, 0);
+      $c: rgba(white, 0.45);
+      $w: rgba(white, 1);
+      background-image: radial-gradient($t 40%, $c 40.5%, $w 80%);
+    }
+  }
