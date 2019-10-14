@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "author": "Adam Jagosz <adamjagosz@gmail.com> (http://adamjagosz.com/)",
+  "homepage": "https://hyvyys.github.io/chordline",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -112,7 +114,5 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ]
-  },
-  "homepage": "https://hyvyys.github.io/chordline",
-  "license": "MIT"
+  }
 }
