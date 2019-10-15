@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 <template>
   <footer class="site-footer u-dark">
     <div class="subtle">

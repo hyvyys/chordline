@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+/* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
+
 import Tokens from '@/models/Tokens.js';
 import SongPartCompletionItemProvider from "@/monaco/SongPartCompletionItemProvider";
 import SongPartFoldingRangeProvider from "@/monaco/SongPartFoldingRangeProvider";

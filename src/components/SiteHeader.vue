@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 <template>
   <div id="nav" class='site-header u-dark'>
     <slot />

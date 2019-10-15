@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 <template>
   <div :class="{ 'keycap': true, 'optional': optional, 'space': value.toLowerCase() === 'space' }">
     {{ value }}

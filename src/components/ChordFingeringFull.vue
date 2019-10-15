@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 <template>
   <div class="chord-fingering-full">
     <UiButton class="copy-button"

@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+/* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
+
 <template>
   <div class='chord-diagram'>
     <div class='fretboard-row' v-for="(string, i) in strings" :key="i">

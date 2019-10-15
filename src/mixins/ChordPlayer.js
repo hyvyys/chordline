@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 import Soundfont from 'soundfont-player';
 import { transpose } from "@tonaljs/tonal";
 import { fromSemitones } from "@tonaljs/interval";

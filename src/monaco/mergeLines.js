@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+/* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
+
 import { isEmptyOrChordLine, isChordLine, isLyricLine } from "@/models/LineKind";
 
 export default function mergeLines({ textContent, position }) {

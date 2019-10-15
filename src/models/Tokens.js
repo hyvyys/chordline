@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+/* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
+
 function chordRegex() {
   const note = '[A-G][b#]?';
   const altered = `(?:5|dim(5|7)?|aug5?|\\+5?|-5?)`;

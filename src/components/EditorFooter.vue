@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 <template>
   <div class="editor-footer">
     <KeyShorcutInfo v-for="(binding, i) in keybindings" :key="i"

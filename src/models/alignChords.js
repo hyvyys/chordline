@@ -1,3 +1,6 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+/* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
+
 /* TODO: use or remove */
 
 /* eslint-disable no-unused-vars */

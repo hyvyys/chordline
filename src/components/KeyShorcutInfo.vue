@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: GPL-3.0-only */
+
 <template>
   <div :class="{'key-shorcut-info': true, 'is-active': active}">
     <KeyCombo :keys="keys" />
