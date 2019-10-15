@@ -142,10 +142,12 @@ $lead-slope-height: 150px;
 }
 
 $img-width: 1000px;
+$img-height: 492px;
 
 .img-blurb {
   box-sizing: content-box;
   width: $img-width;
+  height: $img-height;
   padding: 15px;
   align-self: center;
   display: block;
@@ -180,9 +182,12 @@ $img-width: 1000px;
     overflow: hidden;
     position: relative;
     border-radius: 5px;
+    width: $img-width;
+    height: $img-height;
 
     img {
       width: $img-width;
+      height: $img-height;
       max-width: 90vw;
       display: block;
     }
@@ -199,13 +204,18 @@ $img-width: 1000px;
       transition: transform $duration, opacity $duration;
     }
     &::before {
-      $t: rgba(#3b053b, 0.6);
-      $w: rgba(#804f97, 0.3);
+      $t: rgba(#271d3b, 1);
+      $w: rgba(#2f3b52, 1);
+      background: linear-gradient(178deg, $t, $w 70%);
+      z-index: -1;
+    }
+    &::after {
       $t: rgba(#271d3b, 0.6);
       $w: rgba(#2f3b52, 0.6);
       background: linear-gradient(178deg, $t, $w 70%);
     }
   }
+
   &:hover {
     transform: perspective(1000px) rotateX(2deg) scale(1);
     &::after {
@@ -213,7 +223,7 @@ $img-width: 1000px;
       transform: translateY(-30px) scale(1.2) translateX(-30px);
     }
     .container {
-      &::before {
+      &::after {
         transform: scaleY(1.25);
         opacity: 0.1;
       }
