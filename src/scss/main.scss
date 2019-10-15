@@ -154,9 +154,16 @@ a.link-padded {
     text-align: left;
     width: 100%;
   }
+}
+
+.reading {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: auto;
 
   .key-combo {
-    ::v-deep .keycap {
+    .keycap {
       font-size: 12px;
       font-weight: 600;
       padding: 3px;
@@ -170,13 +177,6 @@ a.link-padded {
   .snippet {
     font-size: 0.9em;
   }
-}
-
-.reading {
-  display: flex;
-  flex-direction: column;
-  width: 800px;
-  margin: auto;
 }
 
 @import "./keen-ui.scss";
