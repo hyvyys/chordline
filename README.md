@@ -1,34 +1,7 @@
 # chordline
 
-## Project setup
-```
-npm install
-```
+https://hyvyys.github.io/chordline/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Write down your guitar tabs faster with a keyboard-controlled YouTube player right next to a feature-rich text editor and a MIDI chord player. 
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Look up chord fingerings at https://hyvyys.github.io/chordline/lookup.
