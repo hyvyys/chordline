@@ -3,18 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "author": "Adam Jagosz <adamjagosz@gmail.com> (http://adamjagosz.com/)",
-  "homepage": "https://hyvyys.github.io/chordline",
-  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@tonaljs/interval": "^3.2.3",
     "@tonaljs/tonal": "^3.2.2",
-    "chord-fingering": "^1.0.0",
-    "core-js": "^2.6.5",
+    "chord-fingering": "^1.0.1",
+    "core-js": "^2.6.10",
     "keen-ui": "^1.2.0",
     "keycode": "^2.2.0",
     "monaco-editor": "^0.18.1",
@@ -31,15 +30,16 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-plugin-unit-jest": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@vue/cli-plugin-babel": "^4.0.5",
+    "@vue/cli-plugin-eslint": "^4.0.5",
+    "@vue/cli-plugin-unit-jest": "^4.0.5",
+    "@vue/cli-service": "^4.0.5",
     "@vue/test-utils": "1.0.0-beta.29",
     "array.prototype.flatmap": "^1.2.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^25.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "gh-pages": "^2.1.1",
@@ -114,5 +114,7 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ]
-  }
+  },
+  "homepage": "https://hyvyys.github.io/chordline",
+  "license": "MIT"
 }

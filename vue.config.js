@@ -5,6 +5,10 @@ function resolve (dir) {
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
+  transpileDependencies: [
+    "chord-fingering",
+  ], 
+  
   publicPath: process.env.NODE_ENV === "production" ? "/chordline/" : "/",
 
   css: {
@@ -22,8 +26,10 @@ module.exports = {
       new MonacoWebpackPlugin()
     ]
   },
-
+  
   chainWebpack: config => {
+    config.module.rule('eslint').use('eslint-loader')
+      .tap(opts => ({ ...opts, emitWarning: true }));
     config.resolve.symlinks(false);
     config.resolve.alias
       .set('@@', resolve(''));
