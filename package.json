@@ -43,7 +43,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "gh-pages": "^2.1.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prerender-spa-plugin": "^3.2.1",
     "sass-loader": "^7.1.0",
     "string.prototype.matchall": "^3.0.2",
