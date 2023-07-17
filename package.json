@@ -6,8 +6,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "node ./scripts/publish.js",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
+
   },
   "dependencies": {
     "@tonaljs/interval": "^3.2.3",
