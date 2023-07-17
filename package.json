@@ -35,7 +35,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-eslint": "^4.0.5",
-    "@vue/cli-plugin-unit-jest": "^4.0.5",
+    "@vue/cli-plugin-unit-jest": "^5.0.8",
     "@vue/cli-service": "^4.0.5",
     "@vue/test-utils": "1.0.0-beta.29",
     "array.prototype.flatmap": "^1.2.1",
