@@ -13,36 +13,43 @@ export default class Keybindings {
     let bindings = [
       {
         keys: "ctrl+space",
+        macosKeys: "meta+p",
         command: "Play/Pause song",
         editorMethod: "playPauseVideo",
       },
       {
         keys: "ctrl+,",
         displayKeys: "ctrl+<",
+        macosKeys: "meta+[",
+        macosDisplayKeys: "cmd+[",
         command: `Rewind ${rewindRate}s`,
         editorMethod: "seekMinus",
       },
       {
         keys: "ctrl+.",
-        event: "keyup",
         displayKeys: "ctrl+>",
+        macosKeys: "meta+]",
+        macosDisplayKeys: "cmd+]",
         command: `Forward ${rewindRate}s`,
         editorMethod: "seekPlus",
       },
       {
         keys: "ctrl+shift+b",
+        macosKeys: "meta+shift+b",
         command: "Add timestamp",
         tooltip: "Remember current song position for current caret position in the lyrics.",
         editorMethod: "addTimestamp",
       },
       {
         keys: "ctrl+b",
+        macosKeys: "meta+b",
         command: "Seek",
-        tooltip: "Set song playback position based on caret position in lyrics by interpolating boomarks.",
+        tooltip: "Move song playback to current position in lyrics. Use added bookmarks to predict the correct position in song.",
         editorMethod: "seekCaret",
       },
       {
         keys: "ctrl+m",
+        macosKeys: "meta+m",
         command: "Merge lines",
         tooltip: "Merge the lyrics and chords of current and next line.",
       },
@@ -54,24 +61,35 @@ export default class Keybindings {
       },
       {
         condition: "editorFocused",
+        keys: "alt+←|→",
+        command: "Navigate words",
+        tooltip: "Move cursor to previous/next word.",
+      },
+      {
+        condition: "editorFocused",
         keys: "ctrl+alt+↑|↓",
+        macosKeys: "meta+alt+shift+↑|↓",
         command: "Multiline cursor",
         tooltip: "Edit multiple lines at once, useful for aligning or tabs.",
       },
     ];
+
+    const isMacLike = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform);
 
     this.bindings = bindings.map(b => {
       const conditions = [ defaultCondition ];
       if (b.condition) conditions.push(b.condition);
       return {
         ...b,
+        keys: isMacLike ? b.macosKeys || b.keys : b.keys,
+        displayKeys: isMacLike ? b.macosDisplayKeys || b.displayKeys : b.displayKeys,
         conditions,
       };
     });
   }
   
   bind(editor) {
-    const modifiers = ['ctrl','shift','alt'];
+    const modifiers = ['ctrl','shift','alt','meta'];
 
     this.bindings.forEach(b => {
       if (b.editorMethod) {

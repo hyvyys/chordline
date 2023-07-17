@@ -3,7 +3,7 @@
 
 <template>
   <div :class="{ 'keycap': true, 'optional': optional, 'space': value.toLowerCase() === 'space' }">
-    {{ value }}
+    {{ value.replace('meta', 'cmd') }}
   </div>
 </template>
 
@@ -35,8 +35,9 @@ export default {
       padding: 0 2px;
       font-size: 2em;
       font-weight: 100;
-      transform: translateY(-50%);
+      transform: translateY(-53%);
       opacity: 0.8;
+      font-weight: 300;
     }
     &::before {
       content: '(';

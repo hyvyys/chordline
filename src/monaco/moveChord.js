@@ -5,9 +5,8 @@ import * as monaco from "monaco-editor";
 import { isEmptyOrChordLine, isChordLine, isLyricLine } from "@/models/LineKind";
 import syllableRegex from "../models/syllableRegex";
 
-export default function moveChord({ text, position, direction, tabSize, alignToSyllable } = {}) {
-  if (alignToSyllable == null) alignToSyllable = true;
-  const { lineNumber, column } = position; // 1-based, not zero
+export default function moveChord({ text, position, direction, tabSize, alignToSyllable = true } = {}) {
+  let { lineNumber, column } = position; // 1-based, not zero
   const lineIndex = lineNumber - 1, columnIndex = column - 1;
   const lines = text.split(/\r?\n/g);
   const next = lines[lineIndex + 1];
@@ -48,8 +47,8 @@ export default function moveChord({ text, position, direction, tabSize, alignToS
           if (index) delta = index;
         }
         else {
-          const index = matches.slice(-1)[0].index ||
-            matches.slice(-2)[1] && matches.slice(-2)[1].index;
+          const index = matches.slice(-1)[0][0].length && matches.slice(-1)[0].index
+            || matches.slice(-2)[0] && matches.slice(-2)[0].index;
           if (index) delta = columnIndex - index;
         }
       }

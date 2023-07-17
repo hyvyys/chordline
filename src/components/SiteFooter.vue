@@ -4,7 +4,7 @@
 <template>
   <footer class="site-footer u-dark">
     <div class="subtle">
-      Copyright 2019 Adam Jagosz.
+      Copyright 2019–2023 Adam Jagosz.
     </div>
 
     <a class="github-link" href="https://github.com/hyvyys/chordline" target="_blank">
@@ -52,21 +52,24 @@ export default {
   line-height: 1.1;
 
 
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  
+  @media (max-width: 992px) {
+    display: flex;
+    flex-direction: column;
+  }
   justify-content: center;
   align-items: center;
   padding: 30px;
 
   > * {
-    margin: 0 30px;
+    margin: 10px 30px;
   }
   > :first-child {
-    flex: 0 0 250px;
     text-align: right;
   }
   > :last-child {
-    flex: 0 0 250px;
     text-align: left;
   }
 

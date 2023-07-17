@@ -2,21 +2,17 @@
 /* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
 
 function syllableRegex() {
-  const consonants = "[bcdfghjklmnpqrstvwxyz'-]";
-  const vowels = "[aeiouy]";
-  const separators = "[ \\.,:;!?]|$";
-  const wordSep = `(?=${separators})`;
-  const wordSepOrConsonant = `(?=${separators}|${consonants})`;
+  const con = "[bcdfghjklmnpqrstvwxz'-]";
+  const y = "[y]";
+  const vow = "[aeiou]";
+  const vowOrY = "[aeiouy]";
+  const sep = "[ \\.,:;!?]|$";
+  const wordSepOrConOrVow = `(?=${sep}|${con}|${vow})`;
 
-  return new RegExp(
-    `${consonants}*${vowels}{1,3}` +
-    `(${consonants}*e${wordSep}|${consonants}*${wordSepOrConsonant})`,
-    "ig"
-  );
+  const regexText = `(?:${con}*${vowOrY}{1,3}|${con}{1,}${y}|${y}${vow}{1,3})` +
+  `${con}*${wordSepOrConOrVow}`;
+
+  return new RegExp(regexText, "ig");
 }
-
-/* should give something like (unescaped): 
-/[bcdfghjklmnpqrstvwxyz']*[aeiouy]{1,3}([bcdfghjklmnpqrstvwxyz']*e(?=[ ,.:'!?]|$)|[bcdfghjklmnpqrstvwxyz']*(?=[ ,.:'!?]|[bcdfghjklmnpqrstvwxyz']|$))/gi;
-*/
 
 export default syllableRegex();

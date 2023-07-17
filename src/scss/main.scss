@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: GPL-3.0-only */
 /* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
 
-@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,600,700,800&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700,800&display=swap&subset=latin-ext');
 
 @font-face {
   font-family: Aromatron;
@@ -40,6 +40,35 @@ body, .ui-textbox {
   // padding: 10px;
   flex: 1;
   overflow: hidden;
+
+  // @media (max-width: 1200px) {
+  //   display: grid;
+  //   grid-template-columns: auto 1fr;
+  //   grid-template-rows: 1fr 20vh;
+  //   .aside {
+  //     grid-row: 1 / 3;
+  //   }
+  //   .right-sidebar {
+  //     width: 100%;
+  //     order: 1;
+  //   }
+  // }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    .aside {
+      flex-shrink: 0;
+      height: calc(202.5 / 360 * min(70vw,360px));
+    }
+    .song-timestamps {
+      flex-grow: 1;
+    }
+    .right-sidebar {
+      max-height: max(25vh,190px);
+      width: 100%;
+    }
+  }
 }
 
 a {
@@ -144,7 +173,7 @@ a.link-padded {
 }
 
 .autoplay-checkbox {
-  width: 10em;
+  width: 9.5em;
 }
 
 .u-content {
@@ -162,7 +191,7 @@ a.link-padded {
 .reading {
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: Min(80vw, 800px);
   margin: auto;
 
   .key-combo {

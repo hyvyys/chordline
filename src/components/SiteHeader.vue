@@ -33,7 +33,10 @@
   flex-wrap: wrap;
   // justify-content: flex-end;
   
-  padding: 6px;
+  padding: 6px 12px;
+  > :first-child {
+    margin: 0 -12px;
+  }
   > :not(:first-child) {
     margin: 4px 0;
   }
@@ -46,6 +49,11 @@
   * {
     color: $dark-text;
   }
+  @media (max-width: 768px) {
+    .ui-textbox__input, .ui-select__display, .ui-checkbox__label-text, a {
+      font-size: 12px;
+    }
+  }
 
   .home-link {   
     line-height: 1;
@@ -53,6 +61,9 @@
     font-size: 2em;
     font-family: Aromatron;
     font-size: 2.35em;
+    @media (max-width: 768px) {
+      font-size: min(calc(10vw - 8px), 2.35em);
+    }
     text-decoration: none;
     color: $dark-text;
     white-space: nowrap;
@@ -68,7 +79,7 @@
   .ui-checkbox {
     // margin-bottom: 0;
     overflow: hidden;
-    padding: 0.15rem;
+    // padding: 0.15rem 0;
   }
   
   .ui-textbox {
@@ -78,6 +89,10 @@
     border-radius: 4px;
     overflow: hidden;
     color: $dark-text !important;
+
+    @media (min-width: 1200px) {
+      margin-left: .5rem;
+    }
     
     .ui-textbox__label {
       flex-direction: row-reverse;

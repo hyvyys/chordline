@@ -144,8 +144,8 @@ $lead-slope-height: 150px;
   margin-bottom: 100px;
 }
 
-$img-width: 1000px;
-$img-height: 492px;
+$img-width: Min(80vw, 1000px);
+$img-height: calc(492/1000*Min(80vw, 1000px));
 
 .img-blurb {
   box-sizing: content-box;

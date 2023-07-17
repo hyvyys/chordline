@@ -4,7 +4,7 @@
 <template>
   <div class="key-combo">
     <span class="key-group" v-for="(group, j) in sequence" :key="j">
-      <Keycap v-for="key in group" :key="key.keyName" :value="key.keyName"/>
+      <Keycap v-for="key in group" :key="key.keyName" :value="key.keyName" :optional="key.optional" />
     </span>
   </div>
 </template>

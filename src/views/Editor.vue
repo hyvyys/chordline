@@ -47,11 +47,17 @@
             >
               <div class="song-timestamp-button" @click="seekTimestamp(i)">
                 <span>
-                  {{ `${formatTime(stamp.time)} at line ${ stamp.logicalPosition.lineNumber }` }}
+                  <span>
+                    {{ formatTime(stamp.time) }}
+                  </span>
+                  <span style="white-space: nowrap;">
+                    {{ `at line ${ stamp.logicalPosition.lineNumber }` }}
+                  </span>
                 </span>
               </div>
             </RemovableItem>
           </div>
+          <UiButton @click="addTimestamp">Add timestamp</UiButton>
         </div>
       </div>
 
@@ -67,15 +73,21 @@
       /> -->
 
       <div class="right-sidebar u-panel-parent">
-        <h3>Chord diagrams</h3>
-        <label class='chord-name'>{{ chord && chord.symbol }}</label>
-        <div class="chord-diagrams u-panel">
-          <ChordFingering v-for="(chordFingering, i) in displayedChordFingerings" :key="i"
+        <h3 style="display: flex; justify-content: space-between; position: relative;">
+          <span>Chord diagrams</span>
+          <div class="chord-sidebar-toggle-mark">{{ showChordSidebar ? '▼' : '▲' }}</div>
+          <div class="chord-sidebar-toggle" @click="showChordSidebar = !showChordSidebar"></div>
+        </h3>
+        <div :class="{ 'hide-on-mobile': !showChordSidebar }">
+          <label class='chord-name'>{{ chord && chord.symbol }}</label>
+          <div class="chord-diagrams u-panel">
+            <ChordFingering v-for="(chordFingering, i) in displayedChordFingerings" :key="i"
             :chordSymbol="chord.symbol"
             :chordFingering="chordFingering" 
             :tuning="tuning"
             @play="onFingeringClicked(i)"
-          />
+            />
+          </div>
         </div>
       </div>
     </main>
@@ -88,6 +100,7 @@
 
 <script>
 import { mapState } from "vuex";
+import UiButton from "keen-ui/src/UiButton.vue";
 import UiTextbox from "keen-ui/src/UiTextbox.vue";
 import UiCheckbox from "keen-ui/src/UiCheckbox.vue";
 import UiTooltip from "keen-ui/src/UiTooltip.vue";
@@ -117,6 +130,7 @@ export default {
     ChordPlayer,
   ],
   components: {
+    UiButton,
     UiTextbox,
     UiCheckbox,
     UiTooltip,
@@ -148,7 +162,8 @@ export default {
       tabStopLength: 6,
       selectChordTimeout: null,
 
-      persistentFields: ["videoUrl", "tabText", "songTimestamps"]
+      persistentFields: ["videoUrl", "tabText", "songTimestamps"],
+      showChordSidebar: true,
     };
   },
   computed: {
@@ -213,6 +228,7 @@ export default {
     this.kb = new KeyBindings();
     this.keybindings = this.kb.bind(this);
     this.refreshKeybindings();
+    this.showChordSidebar = window.innerWidth > 768;
   },
   beforeDestroy() {
     this.kb.unbind();
@@ -536,6 +552,11 @@ export default {
   flex-direction: column;
   min-height: 0;
 }
+.aside {
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
+}
 .u-panel {
   max-height: 100%;
   padding: 4px;
@@ -559,8 +580,9 @@ h3 {
 }
 
 .chord-diagrams {
-  // flex: 0 0 auto;
-  // padding: 
+  @media (max-width: 768px) {
+    padding-left: 12px;
+  }
 }
 
 .monaco {
@@ -590,6 +612,9 @@ h3 {
     &:hover {
       cursor: pointer;
     }
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   }
   &:hover {
     background: $light-hover;
@@ -597,8 +622,12 @@ h3 {
 }
 
 .youtube {
-  width: 360px;
-  height: 202.5px;
+  width: min(35vw,360px);
+  height: calc(202.5 / 360 * min(35vw,360px));
+  @media (max-width: 768px) {
+    width: min(70vw,360px);
+    height: calc(202.5 / 360 * min(70vw,360px));
+  }
   overflow: hidden;
   flex: 0 0 auto;
 }
@@ -612,6 +641,10 @@ h3 {
   padding: 0.5em;
   z-index: 1;
   display: flex;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .key-shortcuts {
@@ -631,5 +664,39 @@ h3 {
   border: 2px;
   min-width: 0;
   flex: 0 0 auto;
+}
+.ui-button {
+  margin: 0 12px;
+  border-radius: 4px;
+  background: $dark-lighter;
+  color: #fff;
+  &:hover, &:focus-visible {
+    background: $dark-neutral !important;
+  }
+  @media (max-width: 768px) {
+    font-size: 10px;
+    line-height: 1.2;
+    height: 30px;
+  }
+}
+.chord-sidebar-toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @media (min-width: 768.02px) {
+    display: none;
+  }
+}
+.chord-sidebar-toggle-mark {
+  @media (min-width: 768.02px) {
+    display: none;
+  }
+}
+.hide-on-mobile {
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 </style>
