@@ -9,7 +9,7 @@ module.exports = {
     "chord-fingering",
   ], 
   
-  publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/chordline/" : "/",
 
   css: {
     loaderOptions: {
