@@ -2,7 +2,7 @@
 /* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
 
 <template>
-  <div :class="{ 'keycap': true, 'optional': optional, 'space': value.toLowerCase() === 'space' }">
+  <div :class="{ 'keycap': true, 'optional': optional, 'space': value.toLowerCase() === 'space', 'letter': value.toLowerCase().match(/[a-z]/), 'mod': value.toLowerCase().match(/(meta|ctrl|shift|alt|cmd)/) }">
     {{ value.replace('meta', 'cmd') }}
   </div>
 </template>
@@ -20,11 +20,18 @@ export default {
 .keycap {
   text-transform: capitalize;
   border-radius: 5px;
-  padding: 2px 5px;
+  padding: 2px 3px;
   margin: 0 1px;
   min-width: 1.75em;
   text-align: center;
   border: 1px solid #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &.mod {
+    font-size: .8em;
+  }
   
   &.optional {
     margin: 0 7px;
