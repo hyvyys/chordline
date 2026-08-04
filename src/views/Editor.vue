@@ -1,20 +1,24 @@
-/* SPDX-License-Identifier: GPL-3.0-only */
-/* Copyright 2019 Adam Jagosz. https://github.com/hyvyys/chordline */
+/* SPDX-License-Identifier: GPL-3.0-only */ /* Copyright 2019 Adam Jagosz.
+https://github.com/hyvyys/chordline */
 
 <template>
   <div class="app-content">
     <SiteHeader>
       <router-link to="/" class="home-link">♪ chordline</router-link>
-      <router-link class='link-padded' to="/editor">Editor</router-link>
-      <router-link class='link-padded' to="/lookup">Chord Lookup</router-link>
+      <router-link class="link-padded" to="/editor">Editor</router-link>
+      <router-link class="link-padded" to="/lookup">Chord Lookup</router-link>
       <UiTextbox
         class="url-textbox"
         v-model="videoUrl"
         spellcheck="false"
         @focus="$event.target.select()"
       />
-      <UiSelect class="instrument-select" :options="instruments" v-model="instrument" />
-      <UiSelect class="capo-select" :options="capoOptions"  v-model="capo" />
+      <UiSelect
+        class="instrument-select"
+        :options="instruments"
+        v-model="instrument"
+      />
+      <UiSelect class="capo-select" :options="capoOptions" v-model="capo" />
       <UiSelect class="tuning-select" :options="tunings" v-model="tuning" />
       <UiCheckbox v-model="autoPlay" class="autoplay-checkbox">
         Autoplay
@@ -51,7 +55,7 @@
                     {{ formatTime(stamp.time) }}
                   </span>
                   <span style="white-space: nowrap;">
-                    {{ `at line ${ stamp.logicalPosition.lineNumber }` }}
+                    {{ `at line ${stamp.logicalPosition.lineNumber}` }}
                   </span>
                 </span>
               </div>
@@ -73,19 +77,28 @@
       /> -->
 
       <div class="right-sidebar u-panel-parent">
-        <h3 style="display: flex; justify-content: space-between; position: relative;">
+        <h3
+          style="display: flex; justify-content: space-between; position: relative;"
+        >
           <span>Chord diagrams</span>
-          <div class="chord-sidebar-toggle-mark">{{ showChordSidebar ? '▼' : '▲' }}</div>
-          <div class="chord-sidebar-toggle" @click="showChordSidebar = !showChordSidebar"></div>
+          <div class="chord-sidebar-toggle-mark">
+            {{ showChordSidebar ? '▼' : '▲' }}
+          </div>
+          <div
+            class="chord-sidebar-toggle"
+            @click="showChordSidebar = !showChordSidebar"
+          ></div>
         </h3>
         <div :class="{ 'hide-on-mobile': !showChordSidebar }">
-          <label class='chord-name'>{{ chord && chord.symbol }}</label>
+          <label class="chord-name">{{ chord && chord.symbol }}</label>
           <div class="chord-diagrams u-panel">
-            <ChordFingering v-for="(chordFingering, i) in displayedChordFingerings" :key="i"
-            :chordSymbol="chord.symbol"
-            :chordFingering="chordFingering" 
-            :tuning="tuning"
-            @play="onFingeringClicked(i)"
+            <ChordFingering
+              v-for="(chordFingering, i) in displayedChordFingerings"
+              :key="i"
+              :chordSymbol="chord.symbol"
+              :chordFingering="chordFingering"
+              :tuning="tuning"
+              @play="onFingeringClicked(i)"
             />
           </div>
         </div>
@@ -93,42 +106,40 @@
     </main>
 
     <div class="footer">
-      <EditorFooter :keybindings="keybindings"  />
+      <EditorFooter :keybindings="keybindings" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import UiButton from "keen-ui/src/UiButton.vue";
-import UiTextbox from "keen-ui/src/UiTextbox.vue";
-import UiCheckbox from "keen-ui/src/UiCheckbox.vue";
-import UiTooltip from "keen-ui/src/UiTooltip.vue";
-import UiSelect from "keen-ui/src/UiSelect.vue";
-import * as monaco from "monaco-editor";
-import { getIdFromUrl } from "vue-youtube";
+import { mapState } from 'vuex';
+import UiButton from 'keen-ui/src/UiButton.vue';
+import UiTextbox from 'keen-ui/src/UiTextbox.vue';
+import UiCheckbox from 'keen-ui/src/UiCheckbox.vue';
+import UiTooltip from 'keen-ui/src/UiTooltip.vue';
+import UiSelect from 'keen-ui/src/UiSelect.vue';
+import * as monaco from 'monaco-editor';
+import { getIdFromUrl } from 'vue-youtube';
 
-import ChordlineLanguage from "@/monaco/ChordlineLanguage";
-import EditorCommands from "@/monaco/EditorCommands";
-import LogicalLine from "@/models/LogicalLine";
-import formatChordInput from "@/models/formatChordInput";
-import SiteHeader from "@/components/SiteHeader.vue";
-import RemovableItem from "@/components/RemovableItem.vue";
+import ChordlineLanguage from '@/monaco/ChordlineLanguage';
+import EditorCommands from '@/monaco/EditorCommands';
+import LogicalLine from '@/models/LogicalLine';
+import formatChordInput from '@/models/formatChordInput';
+import SiteHeader from '@/components/SiteHeader.vue';
+import RemovableItem from '@/components/RemovableItem.vue';
 
-import ChordFingering from "@/components/ChordFingering.vue";
-import watchIframeFocus from "@/utils/iframeFocus";
-import { exampleVideoUrl, exampleTabText } from "@/example-data";
+import ChordFingering from '@/components/ChordFingering.vue';
+import watchIframeFocus from '@/utils/iframeFocus';
+import { exampleVideoUrl, exampleTabText } from '@/example-data';
 
-import EditorFooter from "@/components/EditorFooter";
-import KeyBindings from "@/keybindings.js";
+import EditorFooter from '@/components/EditorFooter';
+import KeyBindings from '@/keybindings.js';
 
-import ChordPlayer from "@/mixins/ChordPlayer.js";
+import ChordPlayer from '@/mixins/ChordPlayer.js';
 
 export default {
-  name: "editor",
-  mixins: [
-    ChordPlayer,
-  ],
+  name: 'editor',
+  mixins: [ChordPlayer],
   components: {
     UiButton,
     UiTextbox,
@@ -144,8 +155,8 @@ export default {
     return {
       kb: null,
       keybindings: [],
-      
-      videoUrl: "",
+
+      videoUrl: '',
       videoPlaying: false,
       ytNotFocused: true,
       rewindRate: 4,
@@ -154,20 +165,20 @@ export default {
       editorFocused: false,
       caretPosition: { lineNumber: 0, column: 0 },
       prevCaretPosition: { lineNumber: 0, column: 0 },
-      tabText: "",
-      oldTabText: "",
+      tabText: '',
+      oldTabText: '',
       textChanged: false,
       songTimestamps: [],
       songTimestampsInitialized: false,
       tabStopLength: 6,
       selectChordTimeout: null,
 
-      persistentFields: ["videoUrl", "tabText", "songTimestamps"],
+      persistentFields: ['videoUrl', 'tabText', 'songTimestamps'],
       showChordSidebar: true,
     };
   },
   computed: {
-    ...mapState(["disposableCompletionItemProvider"]),
+    ...mapState(['disposableCompletionItemProvider']),
     videoId() {
       return getIdFromUrl(this.videoUrl);
     },
@@ -175,13 +186,13 @@ export default {
       return this.$refs.youtube.player;
     },
     playerFrame() {
-      return document.querySelector(".youtube iframe");
+      return document.querySelector('.youtube iframe');
     },
     monacoCreateOptions() {
       return {
         value: this.tabText,
-        theme: "chordlineTheme",
-        language: "chordline",
+        theme: 'chordlineTheme',
+        language: 'chordline',
         automaticLayout: true,
         folding: true,
         lineNumbersMinChars: 3,
@@ -203,10 +214,10 @@ export default {
   },
   watch: {
     videoUrl() {
-      this.persist("videoUrl");
+      this.persist('videoUrl');
     },
     tabText() {
-      this.persist("tabText");
+      this.persist('tabText');
     },
     caretPosition() {
       this.selectChordAtCaret();
@@ -216,7 +227,7 @@ export default {
     },
     editorFocused() {
       this.refreshKeybindings();
-    }
+    },
   },
   created() {
     this.restore();
@@ -236,7 +247,7 @@ export default {
   methods: {
     refreshKeybindings() {
       this.keybindings.forEach((b, i) => {
-        const n = { ...b, active: b.conditions.every(c => this[c]) };
+        const n = { ...b, active: b.conditions.every((c) => this[c]) };
         this.$set(this.keybindings, i, n);
       });
     },
@@ -251,7 +262,7 @@ export default {
     },
 
     loadExamples() {
-      if (!this.videoUrl && !this.tabText) { 
+      if (!this.videoUrl && !this.tabText) {
         this.videoUrl = exampleVideoUrl;
         this.tabText = exampleTabText;
       }
@@ -259,15 +270,15 @@ export default {
 
     // localStorage
     restore() {
-      this.persistentFields.forEach(key => {
+      this.persistentFields.forEach((key) => {
         if (localStorage[key]) {
           this[key] = JSON.parse(localStorage[key]);
         }
       });
     },
     persist(key) {
-      (key ? [key] : this.persistentFields).forEach(k => {
-        localStorage[k] = JSON.stringify(this[k]); 
+      (key ? [key] : this.persistentFields).forEach((k) => {
+        localStorage[k] = JSON.stringify(this[k]);
       });
     },
 
@@ -276,16 +287,19 @@ export default {
       this.disposableCompletionItemProvider &&
         this.disposableCompletionItemProvider.dispose();
       let disposableCompletionItemProvider = ChordlineLanguage.register();
-      this.$store.commit("storeDisposableCompletionItemProvider", {
-        disposableCompletionItemProvider
+      this.$store.commit('storeDisposableCompletionItemProvider', {
+        disposableCompletionItemProvider,
       });
     },
     createEditor() {
       this.registerLanguage();
 
-      this.editor = monaco.editor.create(this.$refs.monacoEditor, this.monacoCreateOptions);
+      this.editor = monaco.editor.create(
+        this.$refs.monacoEditor,
+        this.monacoCreateOptions,
+      );
 
-      this.editor.onDidChangeCursorPosition(event => {
+      this.editor.onDidChangeCursorPosition((event) => {
         this.prevCaretPosition = this.caretPosition;
         this.caretPosition = event.position;
       });
@@ -303,16 +317,19 @@ export default {
       });
 
       const model = this.editor.getModel();
-      monaco.editor.setModelLanguage(model, "chordline")
+      monaco.editor.setModelLanguage(model, 'chordline');
 
       this.editor.updateOptions({
         insertSpaces: true,
         tabSize: 1, // I'll handle tabs myself, don't want any default indenting behavior
         useTabStops: false,
       });
-      model.onDidChangeContent(event => {
+      model.onDidChangeContent((event) => {
         if (event.changes.length === 1 && event.changes[0].text.length === 1) {
-          const editOperation = formatChordInput(this.tabText, event.changes[0]);
+          const editOperation = formatChordInput(
+            this.tabText,
+            event.changes[0],
+          );
           if (editOperation) {
             this.pushEdit(editOperation);
           }
@@ -322,23 +339,36 @@ export default {
       });
 
       const changeCommandKeybinding = (id, keybinding = null) => {
-        this.editor._standaloneKeybindingService.addDynamicKeybinding("-" + id);
+        this.editor._standaloneKeybindingService.addDynamicKeybinding('-' + id);
         if (keybinding)
-          this.editor._standaloneKeybindingService.addDynamicKeybinding(id, keybinding);
-      }
+          this.editor._standaloneKeybindingService.addDynamicKeybinding(
+            id,
+            keybinding,
+          );
+      };
       changeCommandKeybinding(
-        "editor.action.triggerSuggest",
-        monaco.KeyMod.CtrlCmd | monaco.KeyCode.US_SLASH
+        'editor.action.triggerSuggest',
+        monaco.KeyMod.CtrlCmd | monaco.KeyCode.US_SLASH,
       );
-      changeCommandKeybinding("editor.action.outdentLines");
-      changeCommandKeybinding("editor.action.indentLines");
-      changeCommandKeybinding("indent");
-      changeCommandKeybinding("outdent");
-      changeCommandKeybinding("editor.action.toggleTabFocusMode");
-      
-      this.editor.addCommand(monaco.KeyCode.Tab, this.indentChord, '!suggestWidgetVisible');
-      this.editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Tab, this.outdentChord);
-      this.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_M, this.mergeLines);
+      changeCommandKeybinding('editor.action.outdentLines');
+      changeCommandKeybinding('editor.action.indentLines');
+      changeCommandKeybinding('indent');
+      changeCommandKeybinding('outdent');
+      changeCommandKeybinding('editor.action.toggleTabFocusMode');
+
+      this.editor.addCommand(
+        monaco.KeyCode.Tab,
+        this.indentChord,
+        '!suggestWidgetVisible',
+      );
+      this.editor.addCommand(
+        monaco.KeyMod.Shift | monaco.KeyCode.Tab,
+        this.outdentChord,
+      );
+      this.editor.addCommand(
+        monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_M,
+        this.mergeLines,
+      );
     },
     indentChord() {
       let text = this.tabText;
@@ -358,12 +388,14 @@ export default {
     mergeLines() {
       let textContent = this.tabText;
       let position = this.caretPosition;
-      const editOperation = EditorCommands.mergeLines({ textContent, position });
+      const editOperation = EditorCommands.mergeLines({
+        textContent,
+        position,
+      });
       if (editOperation.text == null) {
-        this.editor.getAction("editor.action.joinLines").run();
-      }
-      else {
-        this.pushEdit(editOperation)
+        this.editor.getAction('editor.action.joinLines').run();
+      } else {
+        this.pushEdit(editOperation);
         // new Selection(selectionStartLineNumber: number, selectionStartColumn: number,
         // positionLineNumber: number, positionColumn: number)
         // const beforeCursorState = [
@@ -388,26 +420,31 @@ export default {
         range = this.editor.model.getFullModelRange();
       }
       if (!newPosition) {
-        newPosition = { lineNumber: range.endLineNumber, column: range.startColumn + text.length };
+        newPosition = {
+          lineNumber: range.endLineNumber,
+          column: range.startColumn + text.length,
+        };
       }
       const selection = this.editor.getSelection();
-      const beforeCursorState = [ selection ];
-       /* eslint-disable no-unused-vars */
+      const beforeCursorState = [selection];
+      /* eslint-disable no-unused-vars */
       const cursorStateComputer = (inverseEditOperations) => {
         let newSelection = new monaco.Selection(
           newPosition.lineNumber,
           newPosition.column,
           newPosition.lineNumber,
-          newPosition.column
+          newPosition.column,
         );
         return [newSelection];
-      }
-      //[ newPosition ] = 
-      this.editor.getModel().pushEditOperations(
-        beforeCursorState,
-        [ { text, range } ],
-        cursorStateComputer,
-      );
+      };
+      //[ newPosition ] =
+      this.editor
+        .getModel()
+        .pushEditOperations(
+          beforeCursorState,
+          [{ text, range }],
+          cursorStateComputer,
+        );
       if (newPosition) {
         this.$nextTick(() => {
           this.editor.setPosition(newPosition);
@@ -429,16 +466,14 @@ export default {
     onYouTubeReady() {
       this.watchYouTubeFocus();
     },
-    onYouTubePlaying() {
-    },
+    onYouTubePlaying() {},
     async watchYouTubeFocus() {
       const onFocus = () => (this.ytNotFocused = false);
       const onBlur = () => (this.ytNotFocused = true);
       watchIframeFocus(onFocus, onBlur);
     },
     async playPauseVideo() {
-      if (!this.player)
-        return;
+      if (!this.player) return;
       if ((await this.player.getPlayerState()) === 1) {
         // playing
         await this.player.pauseVideo();
@@ -447,14 +482,12 @@ export default {
       }
     },
     async seekMinus() {
-      if (!this.player)
-        return;
+      if (!this.player) return;
       let time = await this.player.getCurrentTime();
       await this.player.seekTo(time - this.rewindRate);
     },
     async seekPlus() {
-      if (!this.player)
-        return;
+      if (!this.player) return;
       let time = await this.player.getCurrentTime();
       await this.player.seekTo(time + this.rewindRate);
     },
@@ -480,10 +513,11 @@ export default {
           time: duration,
           position: { lineNumber: lineCount, column: 1 },
         };
-        if (!a) a = {
-          time: 0,
-          position: { lineNumber: 1, column: 1 },
-        };
+        if (!a)
+          a = {
+            time: 0,
+            position: { lineNumber: 1, column: 1 },
+          };
       }
 
       const start = LogicalLine.caretToProgress(a.position, this.tabText);
@@ -495,10 +529,12 @@ export default {
       return time;
     },
     async seekTimestamp(index) {
-      if (!this.player)
-        return;
+      if (!this.player) return;
       const timestamp = this.songTimestamps[index];
-      const progress = LogicalLine.caretToProgress(timestamp.position, this.tabText);
+      const progress = LogicalLine.caretToProgress(
+        timestamp.position,
+        this.tabText,
+      );
       const position = LogicalLine.progressToCaret(progress, this.tabText);
       this.editor.setPosition(position);
       this.editor.revealLineInCenter(position.lineNumber);
@@ -506,47 +542,48 @@ export default {
       await this.player.seekTo(timestamp.time);
     },
     async seekCaret() {
-      if (!this.player)
-        return;
+      if (!this.player) return;
       const time = await this.interpolateTimestamps();
       await this.player.seekTo(time);
     },
     // refreshTimestamps(newText, oldText) {
-      // TODO
+    // TODO
     // },
-    async addTimestamp(event, { time, position } = { }) {
-      if (!this.player)
-        return;
-      if (time == null)
-        time = await this.player.getCurrentTime();
+    async addTimestamp(event, { time, position } = {}) {
+      if (!this.player) return;
+      if (time == null) time = await this.player.getCurrentTime();
       time = Math.round(time * 10) / 10;
-      if (position == null)
-        position = this.caretPosition;
+      if (position == null) position = this.caretPosition;
       // remove close timestamps so as to replace them
       this.songTimestamps = this.songTimestamps
-        .filter(b => Math.abs(b.time - time) > 1.75) // more than 1.75 seconds apart
-        .filter(b => Math.abs(b.position.lineNumber - position.lineNumber) > 0); // 1 lines apart or more
-      this.songTimestamps.push({ time, position, logicalPosition: LogicalLine.toLogical(position, this.tabText) });
+        .filter((b) => Math.abs(b.time - time) > 1.75) // more than 1.75 seconds apart
+        .filter(
+          (b) => Math.abs(b.position.lineNumber - position.lineNumber) > 0,
+        ); // 1 lines apart or more
+      this.songTimestamps.push({
+        time,
+        position,
+        logicalPosition: LogicalLine.toLogical(position, this.tabText),
+      });
       this.songTimestamps = this.songTimestamps.sort((l, k) => l.time - k.time);
-      this.persist("songTimestamps");
+      this.persist('songTimestamps');
     },
     removeTimestamp(i) {
       this.songTimestamps.splice(i, 1);
-      this.persist("songTimestamps");
+      this.persist('songTimestamps');
     },
     formatTime(seconds) {
       return (
         Math.floor(seconds / 60) +
-        ":" +
-        String(Math.round(seconds) % 60).padStart(2, "0")
+        ':' +
+        String(Math.round(seconds) % 60).padStart(2, '0')
       );
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 .u-panel-parent {
   display: flex;
   flex-direction: column;
@@ -572,7 +609,6 @@ h3 {
   color: $dark-text;
   // box-shadow: 0 -2px 2px 2px rgba(#fff, 0.4) inset;
 }
-
 
 .chord-name {
   font-size: 1.2em;
@@ -622,11 +658,11 @@ h3 {
 }
 
 .youtube {
-  width: min(35vw,360px);
-  height: calc(202.5 / 360 * min(35vw,360px));
+  width: min(35vw, 360px);
+  height: calc(202.5 / 360 * min(35vw, 360px));
   @media (max-width: 768px) {
-    width: min(70vw,360px);
-    height: calc(202.5 / 360 * min(70vw,360px));
+    width: min(70vw, 360px);
+    height: calc(202.5 / 360 * min(70vw, 360px));
   }
   overflow: hidden;
   flex: 0 0 auto;
@@ -670,7 +706,8 @@ h3 {
   border-radius: 4px;
   background: $dark-lighter;
   color: #fff;
-  &:hover, &:focus-visible {
+  &:hover,
+  &:focus-visible {
     background: $dark-neutral !important;
   }
   @media (max-width: 768px) {
