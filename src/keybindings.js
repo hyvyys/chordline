@@ -54,6 +54,12 @@ export default class Keybindings {
         tooltip: "Merge the lyrics and chords of current and next line.",
       },
       {
+        keys: "ctrl+shift+m",
+        macosKeys: "meta+shift+m",
+        command: "Split lines",
+        tooltip: "Split the lyrics and chords near current position.",
+      },
+      {
         condition: "editorFocused",
         keys: "(shift)+tab",
         command: "Align chord",

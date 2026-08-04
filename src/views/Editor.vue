@@ -369,6 +369,10 @@ export default {
         monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_M,
         this.mergeLines,
       );
+      this.editor.addCommand(
+        monaco.KeyMod.CtrlCmd | monaco.KeyMod.Shift | monaco.KeyCode.KEY_M,
+        this.splitLines,
+      );
     },
     indentChord() {
       let text = this.tabText;
@@ -396,23 +400,21 @@ export default {
         this.editor.getAction('editor.action.joinLines').run();
       } else {
         this.pushEdit(editOperation);
-        // new Selection(selectionStartLineNumber: number, selectionStartColumn: number,
-        // positionLineNumber: number, positionColumn: number)
-        // const beforeCursorState = [
-        //   new monaco.Selection(
-        //     position.lineNumber, position.column,
-        //     position.lineNumber, position.column
-        //   )
-        // ];
-        // const cursorStateComputer = (editOperations) => {
-        //   return beforeCursorState;
-        // }
-        // this.editor.getModel().pushEditOperations(
-        //   beforeCursorState,
-        //   [ editOperation ],
-        //   cursorStateComputer,
-        // );
-        // this.updateText(newText, newPosition);
+      }
+    },
+    splitLines() {
+      let textContent = this.tabText;
+      let position = this.caretPosition;
+      const editOperation = EditorCommands.splitLines({
+        textContent,
+        position,
+      });
+      if (editOperation.text == null) {
+        // No chordline-aware split at this caret position — fall back to a plain
+        // line break, mirroring mergeLines' fallback to joinLines.
+        this.editor.trigger('keyboard', 'type', { text: '\n' });
+      } else {
+        this.pushEdit(editOperation);
       }
     },
     pushEdit({ text, range }, newPosition) {

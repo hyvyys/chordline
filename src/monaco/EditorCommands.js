@@ -3,6 +3,7 @@
 
 import moveChord from "@/monaco/moveChord";
 import mergeLines from "@/monaco/mergeLines";
+import splitLines from "@/monaco/splitLines";
 
 export default {
   indentChord({ text, position, tabSize } = {}) {
@@ -12,5 +13,6 @@ export default {
     return this.moveChord({ text, position, tabSize, direction: -1, preserveOther: false })
   },
   moveChord,
-  mergeLines
+  mergeLines,
+  splitLines
 }
