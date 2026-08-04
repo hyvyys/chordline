@@ -4,7 +4,7 @@
 <template>
   <footer class="site-footer u-dark">
     <div class="subtle">
-      Copyright 2019–2023 Adam Jagosz.
+      Copyright 2019–{{ year }} Adam Jagosz.
     </div>
 
     <a class="github-link" href="https://github.com/hyvyys/chordline" target="_blank">
@@ -40,6 +40,7 @@ export default {
   data() {
     return {
       version,
+      year: new Date().getFullYear()
     }
   },
 }
